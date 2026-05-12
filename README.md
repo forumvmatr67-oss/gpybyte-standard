@@ -2,7 +2,7 @@
 
 **Registration number:** GIS-2025-001  
 **Date of ratification:** 2025-05-12  
-**Author:** [Ваше имя]  
+**Author:** Gosha 
 **Domain:** https://gpybyte.dev  
 **Repository:** https://github.com/forumvmatr67-oss/gpybyte-standard
 
