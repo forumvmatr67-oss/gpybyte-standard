@@ -1,33 +1,48 @@
-# gpybyte, hpybyte, ipybyte – Binary Prefixes Beyond Yobibyte
+# Gpybyte Independent Standard (GIS) – Version 1.0
 
-This repository proposes three new binary units of information for future data volumes:
+**Registration number:** GIS-2025-001  
+**Date of ratification:** 2025-05-12  
+**Author:** [Ваше имя]  
+**Domain:** https://gpybyte.dev  
+**Repository:** https://github.com/ваш-аккаунт/gpybyte-standard
 
-- **gpybyte (GpyB)** = 2⁹⁰ bytes
-- **hpybyte (HpyB)** = 2¹⁰⁰ bytes
-- **ipybyte (IpyB)** = 2¹¹⁰ bytes
+## 1. Scope
+This document defines three new units of digital information: **gpybyte**, **hpybyte**, and **ipybyte**, along with their symbols, relationships, and conversion rules.
 
-They extend the IEC 80000‑13 binary prefix series (kibi-, mebi-, …, yobi-).
+## 2. Definitions
 
-## Why?
-The yobibyte (2⁸⁰ B) will eventually become too small for global data aggregates. These names offer a smooth, predictable scaling (each step multiplies by 1024).
+### 2.1 Base unit
+The base unit is the **byte (B)**, as defined in ISO/IEC 80000-13.
 
-## Definitions in other units
-| Unit | Bytes | Mebibytes (MiB) | Megabytes (MB) |
-|------|-------|----------------|----------------|
-| gpybyte | 2⁹⁰ | 2⁷⁰ MiB | ≈1.24×10²¹ MB |
-| hpybyte | 2¹⁰⁰ | 2⁸⁰ MiB | ≈1.27×10²⁴ MB |
-| ipybyte | 2¹¹⁰ | 2⁹⁰ MiB | ≈1.30×10²⁷ MB |
+### 2.2 The ipybyte
+- **Name:** ipybyte
+- **Symbol:** IpyB (uppercase) or ipyb (lowercase)
+- **Value:** `1 ipybyte = 2⁹⁰ bytes = 1 237 940 039 285 380 274 899 124 224 B`
 
-## Repository structure
-- `/gpybyte` – detailed specification of gpybyte
-- `/hpybyte` – detailed specification of hpybyte
-- `/ipybyte` – detailed specification of ipybyte
-- `LICENSE` – MIT license
-- `CODE_OF_CONDUCT.md` – Contributor Covenant
-- `CONTRIBUTING.md` – how to propose changes
+### 2.3 The hpybyte
+- **Name:** hpybyte
+- **Symbol:** HpyB / hpyb
+- **Value:** `1 hpybyte = 1000 × ipybyte = 10³ × 2⁹⁰ B`
 
-## Status
-**Unofficial proposal** – open for community discussion. To become an official IEC standard, this text would need to be submitted through a national standards body.
+### 2.4 The gpybyte
+- **Name:** gpybyte
+- **Symbol:** GpyB / gpyb
+- **Value:** `1 gpybyte = 1000 × hpybyte = 10⁶ × 2⁹⁰ B`
 
-## How to participate
-Read `CONTRIBUTING.md`, open an issue or pull request.
+## 3. Relationship to other units
+| Unit | Value in bytes | Value in ipybyte |
+|------|----------------|------------------|
+| 1 ipybyte | 2⁹⁰ B | 1 |
+| 1 hpybyte | 10³ × 2⁹⁰ B | 1000 |
+| 1 gpybyte | 10⁶ × 2⁹⁰ B | 1 000 000 |
+| 1 yobibyte (YiB) | 2⁸⁰ B | 2⁻¹⁰ ipybyte ≈ 0.00097656 ipybyte |
+
+## 4. Usage recommendations
+- These units are intended for future large-scale data storage and transmission.
+- Decimal prefixes (kilo-, mega-) should not be mixed with gpybyte/hpybyte/ipybyte to avoid confusion.
+
+## 5. Copyright and license
+This standard is released under the MIT License. You may freely use, copy, and modify it.
+
+---
+Signed: Gosha, 2025-05-12
