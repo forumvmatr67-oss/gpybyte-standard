@@ -4,7 +4,7 @@
 **Date of ratification:** 2025-05-12  
 **Author:** [Ваше имя]  
 **Domain:** https://gpybyte.dev  
-**Repository:** https://github.com/ваш-аккаунт/gpybyte-standard
+**Repository:** https://github.com/forumvmatr67-oss/gpybyte-standard
 
 ## 1. Scope
 This document defines three new units of digital information: **gpybyte**, **hpybyte**, and **ipybyte**, along with their symbols, relationships, and conversion rules.
