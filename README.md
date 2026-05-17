@@ -1,22 +1,96 @@
-# Gpybyte Independent Standard (GIS) – Version 2.0 (Stable)
+# Gpybyte Independent Standard (GIS) – Версия 2.0 (Полная)
 
-**Status:** STABLE – no longer experimental.  
-**Date of release:** 2025-05-17  
-**Supersedes:** GIS v1.0 (experimental)  
-**Author:** Gosha  
-**Domain:** https://gpybyte.dev  
-**Repository:** https://github.com/forumvmatr67-oss/gpybyte-standard
+**Статус:** СТАБИЛЬНЫЙ – не экспериментальный  
+**Дата выпуска:** 2025-05-17  
+**Автор:** Gosha  
+**Домен:** https://gpybyte.dev  
+**Репозиторий:** https://github.com/forumvmatr67-oss/gpybyte-standard  
+**Лицензия:** Apache License 2.0 (см. файл `LICENSE`)
 
-## 1. Purpose
-This standard defines a set of binary-decimal hybrid units for digital information, extending beyond the yobibyte (2⁸⁰ bytes). The units are intended for real-world use in computing, data storage, and scientific contexts.
+---
 
-## 2. Definitions
+## 1. Цель и область применения
 
-| Unit | Symbol | Value (bytes) | Relationship |
-|------|--------|---------------|--------------|
-| ipybyte | IpyB / ipyb | 2⁹⁰ | base unit |
-| hpybyte | HpyB / hpyb | 1000 × ipybyte | 10³ × ipybyte |
-| gpybyte | GpyB / gpyb | 1000 × hpybyte | 10⁶ × ipybyte |
-| jpybyte | JpyB / jpyb | 1000 × gpybyte | 10⁹ × ipybyte |
+Настоящий стандарт определяет семейство гибридных (двоично‑десятичных) единиц измерения количества цифровой информации. Единицы предназначены для величин, превышающих йобибайт (2⁸⁰ байт), и могут использоваться в научных расчётах, инженерии, хранении данных и разработке программного обеспечения.
 
-## 3. Exact values (in bytes)
+Стандарт **не заменяет** существующие единицы SI (кило‑, мега‑, гига‑…) или IEC (киби‑, меби‑, гиби‑…), а дополняет их для будущих масштабов данных.
+
+---
+
+## 2. Определения единиц
+
+Все единицы строятся на базовой единице **ipybyte**, которая сохраняет двоичную природу (степень двойки). Отношения между единицами – десятичные (умножение на 1000).
+
+| Единица | Символ (верхний / нижний) | Значение в байтах | Отношение к ipybyte |
+|---------|---------------------------|-------------------|---------------------|
+| **ipybyte** | `IpyB` / `ipy` | 2⁹⁰ | 1 |
+| **hpybyte** | `HpyB` / `hpy` | 1000 × ipybyte | 10³ |
+| **gpybyte** | `GpyB` / `gpy` | 1000 × hpybyte = 10⁶ × ipybyte | 10⁶ |
+| **jpybyte** | `JpyB` / `jpy` | 1000 × gpybyte = 10⁹ × ipybyte | 10⁹ |
+
+### 2.1 Точные значения в байтах
+
+ipybyte = 1 237 940 039 285 380 274 899 124 224
+hpybyte = 1 237 940 039 285 380 274 899 124 224 000
+gpybyte = 1 237 940 039 285 380 274 899 124 224 000 000
+jpybyte = 1 237 940 039 285 380 274 899 124 224 000 000 000
+
+
+### 2.2 Соотношение с йобибайтом (YiB)
+
+Для справки: 1 YiB = 2⁸⁰ байт ≈ 1,2089×10²⁴.
+
+| Единица | ≈ в YiB |
+|---------|---------|
+| 1 ipybyte | 1024 |
+| 1 hpybyte | 1 048 576 |
+| 1 gpybyte | 1 073 741 824 |
+| 1 jpybyte | 1 099 511 627 776 |
+
+---
+
+## 3. Принцип именования и продолжение ряда
+
+Имена образуются по алфавитному принципу (начиная с `i`, затем `h`, `g`, `j`, `k`, `l`, …) с добавлением суффикса `pybyte`. Это обеспечивает предсказуемость и лёгкость запоминания.
+
+**Ряд не останавливается на `jpybyte`.** Следующие единицы получаются умножением предыдущей на 1000:
+
+- `kpybyte` (KpyB) = 1000 × jpybyte = 10¹² × ipybyte
+- `lpybyte` (LpyB) = 1000 × kpybyte = 10¹⁵ × ipybyte
+- `mpybyte` (MpyB) = 1000 × lpybyte = 10¹⁸ × ipybyte
+- и так далее по алфавиту (n, o, p, q, r, s, t, u, v, w, x, y, z).
+
+Таким образом, шкала GIS является открытой и масштабируемой.
+
+---
+
+## 4. Правила использования
+
+- При записи значений рекомендуется указывать символ единицы (например, `1.5 GpyB` или `3 jpy`).
+- Не следует смешивать эти единицы с десятичными приставками SI (кило‑, мега‑) во избежание путаницы.
+- Для программной реализации достаточно определить константы для `IPY`, `HPY`, `GPY`, `JPY` и т.д., как показано в разделе 5.
+- Допускается использование как верхнего, так и нижнего регистра символов, но в технической документации предпочтителен верхний регистр (`JpyB`).
+
+---
+
+## 5. Эталонные реализации
+
+### 5.1 Python
+
+```python
+# GIS units – version 2.0
+IPY = 2 ** 90
+HPY = 1000 * IPY
+GPY = 1000 * HPY
+JPY = 1000 * GPY
+
+def to_bytes(value, unit):
+    """Convert value in given unit to bytes."""
+    return value * unit
+
+def from_bytes(bytes_val, unit):
+    """Convert bytes to given unit."""
+    return bytes_val / unit
+
+# Пример
+print(f"1 jpybyte = {to_bytes(1, JPY)} bytes")
